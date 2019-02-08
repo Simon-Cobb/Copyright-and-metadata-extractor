@@ -1,1 +1,0 @@
-document.getElementById("c4_reviewcomments").value = window.location.hash.split("#")[1];
