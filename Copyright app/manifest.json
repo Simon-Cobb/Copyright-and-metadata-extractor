@@ -1,0 +1,141 @@
+{
+  "name": "Set statement composer",
+  "version": "1.3",
+  "description": "A contraption for extracting copyright information from journal webpages and writing set statements.",
+  "permissions": ["activeTab", "storage", "tabs"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_icon": {
+      "16": "images/get_started16.png",
+      "32": "images/get_started32.png",
+      "48": "images/get_started48.png",
+      "128": "images/get_started128.png"
+    }
+  },
+  "icons": {
+    "16": "images/get_started16.png",
+    "32": "images/get_started32.png",
+    "48": "images/get_started48.png",
+    "128": "images/get_started128.png"
+  },
+  "content_scripts": [
+   {
+     "matches": ["https://www.sciencedirect.com/*"],
+     "run_at": "document_idle",
+     "js": ["scienceDirect.js"]
+   },
+   {
+     "matches": ["https://journals.plos.org/*"],
+     "run_at": "document_idle",
+     "js": ["plos.js"]
+   },
+   {
+     "matches": ["https://www.frontiersin.org/*"],
+     "run_at": "document_idle",
+     "js": ["frontiers.js"]
+   },
+   {
+     "matches": ["https://royalsocietypublishing.org/*"],
+     "run_at": "document_idle",
+     "js": ["royalSociety.js"]
+   },
+   {
+     "matches": ["https://link.springer.com/*"],
+     "run_at": "document_idle",
+     "js": ["springerLink.js"]
+   },
+   {
+     "matches": ["https://onlinelibrary.wiley.com/*","https://agupubs.onlinelibrary.wiley.com/*"],
+	 "exclude_matches": ["https://*/action/*"],
+     "run_at": "document_idle",
+	 "all_frames": true,
+     "js": ["wiley.js"]
+   },
+   {
+     "matches": ["https://onlinelibrary.wiley.com/action/*","https://agupubs.onlinelibrary.wiley.com/action/*"],
+     "run_at": "document_idle",
+	 "all_frames": true,
+     "js": ["wileyCite.js"]
+   },
+   {
+     "matches": ["https://academic.oup.com/*"],
+     "run_at": "document_idle",
+     "js": ["oxford.js"]
+   },
+   {
+     "matches": ["https://www.tandfonline.com/*"],
+     "run_at": "document_idle",
+     "js": ["tandf.js"]
+   },
+   {
+     "matches": ["https://www.nature.com/*"],
+     "run_at": "document_idle",
+     "js": ["nature.js"]
+   },
+   {
+     "matches": ["https://journals.sagepub.com/*"],
+     "run_at": "document_idle",
+     "js": ["sage.js"]
+   },
+   {
+     "matches": ["https://pubs.acs.org/*"],
+     "run_at": "document_idle",
+     "js": ["acs.js"]
+   },
+   {
+     "matches": ["https://www.emeraldinsight.com/*"],
+     "run_at": "document_idle",
+     "js": ["emerald.js"]
+   },
+   {
+     "matches": ["https://ieeexplore.ieee.org/*"],
+     "run_at": "document_idle",
+     "js": ["ieee.js"]
+   },
+   {
+     "matches": ["https://www.cambridge.org/*"],
+     "run_at": "document_idle",
+     "js": ["CUP.js"]
+   },
+   {
+     "matches": ["https://*.biomedcentral.com/*"],
+     "run_at": "document_idle",
+     "js": ["bmc.js"]
+   },
+   {
+     "matches": ["https://www.mdpi.com/*"],
+     "run_at": "document_idle",
+     "js": ["mdpi.js"]
+   },
+   {
+     "matches": ["https://*.bmj.com/*"],
+     "run_at": "document_idle",
+     "js": ["bmj.js"]
+   },
+   {
+     "matches": ["https://eprints.whiterose.ac.uk/cgi/users/home?screen=EPrint%3A%3AEdit&eprintid=*&stage=files"],
+     "run_at": "document_idle",
+     "js": ["wrro.js"]
+   },
+   {
+     "matches": ["https://eprints.whiterose.ac.uk/cgi/users/home?screen=EPrint%3A%3AEdit&eprintid=*&stage=reviewcomments"],
+     "run_at": "document_idle",
+     "js": ["reviewComments.js"]
+   },
+   {
+     "matches": ["https://www.google.co.uk/*","https://www.google.com/*"],
+	 "exclude_matches": ["https://*/maps/*"],
+     "run_at": "document_idle",
+     "js": ["gkpID.js"]
+   },
+   {
+     "matches": ["https://www.google.co.uk/maps/*","https://www.google.com/maps/*"],
+     "run_at": "document_idle",
+     "js": ["cid.js"]
+   }
+ ],
+  "manifest_version": 2
+}
