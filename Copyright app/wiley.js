@@ -16,9 +16,10 @@ var doi = document.querySelector(".epub-doi").innerText;
 
 var str = document.querySelector("section.details").innerText;
 res = str.trim().replace(/\n+/, "").replace(/Details/, "").replace(/\n.*\n.*\n/, " ");
-var card_id1 = res;
-if (card_id1 !== null) {
-var cardId1 = card_id1;
+
+var cr = res;
+if (cr !== null) {
+var copyright = cr;
 }
 
 	var node1 = document.createElement("p");
@@ -29,10 +30,12 @@ var cardId1 = card_id1;
 	var cite = localStorage.fullCite;
     console.log("CITATION: " + cite);
 
-	var text1 = document.createTextNode(cardId1 + " This is the peer reviewed version of the following article: " + cite + ", which has been published in final form at " + DOI +". This article may be used for non-commercial purposes in accordance with Wiley Terms and Conditions for Self-Archiving. Uploaded in accordance with the publisher's self-archiving policy.");
+	var text1 = document.createTextNode(copyright + " This is the peer reviewed version of the following article: " + cite + ", which has been published in final form at " + DOI +". This article may be used for non-commercial purposes in accordance with Wiley Terms and Conditions for Self-Archiving. Uploaded in accordance with the publisher's self-archiving policy.");
 	node1.appendChild(text1);
 	node1.style.cssText="line-height:1.2;font-size:10px;color:#ff0000;border:1px solid #0000ff;background-color:#f0f0f0;"
-document.querySelector(".citation__title").appendChild(node1);
+
+	var h = document.querySelector(".citation__title");
+    h.insertBefore(node1, h.childNodes[0]);
 
 var txt = document.getElementById("copyleft").innerText;
 chrome.storage.local.set({key: txt}, function() {
