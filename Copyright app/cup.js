@@ -1,5 +1,4 @@
-//Cambridge University Press
-//cambridge.org
+//Cambridge University Press - cambridge.org
 var str = document.querySelector("div.copyright").innerText;
 
 if (str !== null) {
