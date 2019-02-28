@@ -1,9 +1,9 @@
+//ACS - https://pubs.acs.org/
 var str = document.querySelector("#artCopyright").innerText;
 var res = str.replace("Copyright ©", "©");
 
-var cr = res;
-if (cr !== null) {
-	var copyright = cr;
+if (res !== null) {
+	var copyright = res;
 }
 	var node1 = document.createElement("p");
 	node1.id = "copyleft";
