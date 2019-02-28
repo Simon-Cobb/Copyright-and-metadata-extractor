@@ -1,3 +1,4 @@
+//Wiley
 window.onload = function() {myFunction()};
 function myFunction() {
 if(document.URL.indexOf("#")==-1)
@@ -11,7 +12,9 @@ if(document.URL.indexOf("#")==-1)
  
 var doi = document.querySelector(".epub-doi").innerText;
             var tools = doi.replace("https://doi.org/","").replace("/","%2F");
-			window.open("https://onlinelibrary.wiley.com/action/showCitFormats?doi=" + tools + "#");
+			var myWindow = window.open("https://onlinelibrary.wiley.com/action/showCitFormats?doi=" + tools + "#", "myWindow", "width=60, height=50");
+			location.reload(true)
+		//	myWindow.window.close();
 		}
 
 var str = document.querySelector("section.details").innerText;
