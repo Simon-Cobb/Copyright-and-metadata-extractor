@@ -1,5 +1,4 @@
-//Emerald
-//emeraldinsight.com
+//Emerald - emeraldinsight.com
 var str = document.querySelector(".copyRight dd").innerText;
 
 if (str !== null) {
