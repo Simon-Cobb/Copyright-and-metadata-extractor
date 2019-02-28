@@ -1,5 +1,4 @@
-//BMJ
-//bmj.com
+//BMJ - bmj.com
 var x = document.querySelector('.icon-article-info');
 if(x)
 {
