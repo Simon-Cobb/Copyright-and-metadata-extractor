@@ -1,3 +1,4 @@
+//Elsevier - https://www.sciencedirect.com
 var x = document.querySelector('button.show-hide-details');
 if(x)
 {
@@ -6,28 +7,28 @@ if(x)
 
 var str = document.querySelector(".copyright-line").innerHTML;
 var res = str.replace(". All rights reserved.", ".").replace(/^Copyright ©/, "©");
-var cr = res;
-if (cr !== null) {
-	var copyright = cr;
+if (res !== null) {
+	var copyright = res;
 }
 
-	var node1 = document.createElement("p");
+var node1 = document.createElement("p");
 	node1.id = "copyleft";
 
-	var node2 = document.createElement("p");
+var node2 = document.createElement("p");
+	node2.id = "cover";
 	
-	var node3 = document.createElement("p");
+var node3 = document.createElement("p");
 	node3.id = "output";
 	
-	var title = document.getElementsByName("citation_journal_title")[0].content;
+var title = document.getElementsByName("citation_journal_title")[0].content;
 	
-	var text1 = document.createTextNode(copyright + " This is an author produced version of a paper published in " + title + ". Uploaded in accordance with the publisher's self-archiving policy.","color: green; font-size: large");
+var text1 = document.createTextNode(copyright + " This is an author produced version of a paper published in " + title + ". Uploaded in accordance with the publisher's self-archiving policy.","color: green; font-size: large");
 	node1.appendChild(text1);
 	node1.style.cssText="line-height:1.2;font-size:10px;color:#ff0000;border:1px solid #0000ff;background-color:#f0f0f0;"
 	var h = document.querySelector("h1.Head");
     h.insertBefore(node1, h.childNodes[0]);
 	
-	var text2 = document.createTextNode(copyright + " This manuscript version is made available under the CC-BY-NC-ND 4.0 license http://creativecommons.org/licenses/by-nc-nd/4.0/.","color: green; font-size: large");
+var text2 = document.createTextNode(copyright + " This manuscript version is made available under the CC-BY-NC-ND 4.0 license http://creativecommons.org/licenses/by-nc-nd/4.0/.","color: green; font-size: large");
 	node2.appendChild(text2);
 	node2.style.cssText="line-height:1.2;font-size:10px;color:#ff0000;border:1px solid #0000ff;background-color:#f0f0f0;"
 	h.insertBefore(node2, h.childNodes[1]);
@@ -35,6 +36,11 @@ if (cr !== null) {
 var txt = document.getElementById("copyleft").innerText;
 chrome.storage.local.set({key: txt}, function() {
           console.log('Copyright statement set to: ' + txt);
+        });
+
+var cs = document.getElementById("cover").innerText;		
+	chrome.storage.local.set({CSkey: cs}, function() {
+          console.log('COVERSHEET: ' + cs);
         });
 
 var data = [
@@ -58,9 +64,9 @@ h.insertBefore(node3, h.childNodes[2]);
 var node4 = document.createElement("p");
 	node4.id = "betterKWs";
 	var str = document.querySelector(".keywords-section").innerHTML;
-res = str.replace(/<div class="keyword"><span>/,"").split(/<span>/).join("; ").replace(/<h2 class="section-title">Keywords<\/h2>/,"").replace(/(<span>|<\/span>)/g,"").replace(/(<div>|<\/div>)/g,"").replace(/<div class="keyword">/g,"").replace(/<div id="[kwrd]{2,4}[0-9]{4}"/g,"").replace(/class="keyword">/g,"").replace("; ","").trim();
+res = str.trim().split(/<\/span>/).join("; ").replace(/<h2.+<\/h2>/,"").replace(/(<span|<span>|<\/span>)/g,"").replace(/(<div |<div>|<\/div>)/g,"").replace(/class="keyword">/g,"").replace(/id="[a-z0-9]{4,8}"/g,"").replace(/>/g,"").replace(/;$/,"");
 
-    var text4 = document.createTextNode(res);
+var text4 = document.createTextNode(res);
 	node4.appendChild(text4);
 	node4.style.cssText="line-height:1.2;font-size:10px;color:#ff0000;border:1px solid #0000ff;background-color:#f0f0f0;"
 	document.querySelector(".keywords-section").appendChild(node4);
