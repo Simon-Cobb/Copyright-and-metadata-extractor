@@ -2,4 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-'use strict';
+chrome.browserAction.onClicked.addListener(function (tab) {
+	chrome.tabs.executeScript(tab.id, {
+		file: 'metadata-extractor.js'
+	});
+});
