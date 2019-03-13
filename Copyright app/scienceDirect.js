@@ -55,8 +55,24 @@ function getEmbargoByTitle(journal) {
 
 var found = getEmbargoByTitle(title);
 var emb = found[0].embargo;
+console.log(emb);
 
-var text3 = document.createTextNode(emb + " months embargo.");
+var pubOnline = document.getElementsByName("citation_online_date")[0].content;
+var d = new Date(pubOnline);
+var year = d.getFullYear();
+var month = d.getMonth() + parseInt(emb);
+var day = d.getDate();
+var expire = new Date(year, month, day);
+var today = new Date();
+today = today.toISOString();
+expire = expire.toISOString();
+if (expire > today) {
+  expire = "expires " + expire.split('T')[0];
+} else {
+  expire = "expired";
+}
+
+var text3 = document.createTextNode(emb + " months embargo (" + expire + ").");
 	node3.appendChild(text3);
 	node3.style.cssText="line-height:1.5;font-size:14px;font-weight:bold;color:#000000;border:1px solid #0000ff;background-color:#f0f0f0;"
 h.insertBefore(node3, h.childNodes[2]);
@@ -64,7 +80,7 @@ h.insertBefore(node3, h.childNodes[2]);
 var node4 = document.createElement("p");
 	node4.id = "betterKWs";
 	var str = document.querySelector(".keywords-section").innerHTML;
-res = str.trim().split(/<\/span>/).join("; ").replace(/<h2.+<\/h2>/,"").replace(/(<span|<span>|<\/span>)/g,"").replace(/(<div |<div>|<\/div>)/g,"").replace(/class="keyword">/g,"").replace(/id="[a-z0-9]{4,8}"/g,"").replace(/>/g,"").replace(/;$/,"");
+res = str.trim().split(/<\/span>/).join("; ").replace(/<h2.+<\/h2>/,"").replace(/(<span|<span>|<\/span>)/g,"").replace(/(<div |<div>|<\/div>)/g,"").replace(/class="keyword">/g,"").replace(/id="[a-z0-9]+"/g,"").replace(/>/g,"").replace(/;$/,"").slice(0,-2);
 
 var text4 = document.createTextNode(res);
 	node4.appendChild(text4);

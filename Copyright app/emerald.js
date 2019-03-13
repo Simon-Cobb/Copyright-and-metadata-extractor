@@ -1,4 +1,5 @@
-//Emerald - emeraldinsight.com
+//Emerald
+//emeraldinsight.com
 var str = document.querySelector(".copyRight dd").innerText;
 
 if (str !== null) {
@@ -13,7 +14,6 @@ if (str !== null) {
 	node1.appendChild(text1);
 	node1.style.cssText="line-height:1.2;font-size:10px;color:#ff0000;border:1px solid #0000ff;background-color:#f0f0f0;"
 	
-//document.querySelector(".hlFld-Title").appendChild(node1);
 var h = document.querySelector(".hlFld-Title");
     h.insertBefore(node1, h.childNodes[0]);
 

@@ -1,4 +1,5 @@
-//ACS - https://pubs.acs.org/
+//ACS
+//https://pubs.acs.org/
 var str = document.querySelector("#artCopyright").innerText;
 var res = str.replace("Copyright ©", "©");
 
