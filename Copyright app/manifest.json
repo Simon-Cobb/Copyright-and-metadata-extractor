@@ -1,6 +1,6 @@
 {
   "name": "Set statement composer",
-  "version": "1.4",
+  "version": "1.8",
   "description": "A contraption for extracting copyright information from journal webpages and writing set statements.",
   "permissions": ["activeTab", "storage", "tabs"],
   "background": {
@@ -8,10 +8,10 @@
     "persistent": false
   },
   "icons": {
-    "16": "images/get_started16.png",
-    "32": "images/get_started32.png",
-    "48": "images/get_started48.png",
-    "128": "images/get_started128.png"
+    "16": "images/cr16.png",
+    "32": "images/cr32.png",
+    "48": "images/cr48.png",
+    "128": "images/cr128.png"
   },
     "browser_action": {
     "default_title": "Metadata extractor"
@@ -21,6 +21,11 @@
      "matches": ["https://pubs.acs.org/*"],
      "run_at": "document_idle",
      "js": ["acs.js"]
+    },
+	{
+     "matches": ["https://journals.aps.org/*"],
+     "run_at": "document_idle",
+     "js": ["aps.js"]
     },
 	{
      "matches": ["https://*.biomedcentral.com/*"],
@@ -78,12 +83,6 @@
      "run_at": "document_idle",
 	 "all_frames": true,
      "js": ["wiley.js"]
-   },
-   {
-     "matches": ["https://onlinelibrary.wiley.com/action/*","https://agupubs.onlinelibrary.wiley.com/action/*","https://rmets.onlinelibrary.wiley.com/action/*","https://obgyn.onlinelibrary.wiley.com/action/*"],
-     "run_at": "document_idle",
-	 "all_frames": true,
-     "js": ["wileyCite.js"]
    },
    {
      "matches": ["https://academic.oup.com/*"],
