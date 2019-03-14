@@ -1,2 +1,2 @@
 # copyright-statements
-Extension for Chrome to extract copyright statements for journal articles upon loading the landing page.
+Extension for Chrome browser to extract copyright statements and metadata from the landing page of an academic journal article.
