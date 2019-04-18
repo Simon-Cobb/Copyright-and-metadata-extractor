@@ -4,10 +4,18 @@ if (str !== null) {
 	var copyright = str;
 }
 
+var oa = document.querySelector('#open-choice-icon');
+var title = document.querySelector("div.enumeration span").innerText;
+var txt = "";
+if (oa !== null) {
+	var copyright = copyright;
+} else {
+var copyright = txt + copyright + ". This is an author produced version of a paper published in " + title + ". Uploaded in accordance with the publisher's self-archiving policy."; }
+
 var node1 = document.createElement("p");
 	node1.id = "copyleft";
-var title = document.querySelector("div.enumeration span").innerText;
-var text1 = document.createTextNode(copyright + ". This is an author produced version of a paper published in " + title + ". Uploaded in accordance with the publisher's self-archiving policy.");
+	
+var text1 = document.createTextNode(copyright);
 	node1.appendChild(text1);
 	node1.style.cssText="line-height:1.2;font-size:10px;color:#ff0000;border:1px solid #0000ff;background-color:#f0f0f0;"
 

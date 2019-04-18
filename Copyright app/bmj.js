@@ -5,16 +5,25 @@ if(x)
    x.click();
 }
 var str = document.querySelector(".nlm-copyright-statement").innerText;
-
 if (str !== null) {
 	var copyright = str;
 	}
+	
+var oa = document.querySelector('svg.icon.icon-open-access.bmjj-open-access.bmjj-access-tag');
+var lic = document.querySelector('span.nlm-license').innerText;
+var title = document.querySelector(".highwire-cite-metadata-journal.highwire-cite-metadata").innerText;
+var txt = "";
+if (oa !== null) {
+	var license = lic;
+} else { var license = " This is an author produced version of a paper published in " + title + ". Reuse of this manuscript version (excluding any databases, tables, diagrams, photographs and other images or illustrative material included where a another copyright owner is identified) is permitted strictly pursuant to the terms of the Creative Commons Attribution-Non-Commercial 4.0 International (CC-BY-NC 4.0) - https://creativecommons.org/licenses/by-nc/4.0/."; }
+
+
 	
 	var node1 = document.createElement("p");
 	node1.id = "copyleft";
 	
 	var title = document.querySelector(".highwire-cite-metadata-journal.highwire-cite-metadata").innerText;
-	var text1 = document.createTextNode(copyright + " This is an author produced version of a paper published in " + title + ". Reuse of this manuscript version (excluding any databases, tables, diagrams, photographs and other images or illustrative material included where a another copyright owner is identified) is permitted strictly pursuant to the terms of the Creative Commons Attribution-Non-Commercial 4.0 International (CC-BY-NC 4.0) - https://creativecommons.org/licenses/by-nc/4.0/.");
+	var text1 = document.createTextNode(copyright + ' ' + license);
 	node1.appendChild(text1);
 	node1.style.cssText="line-height:1.2;font-size:10px;color:#ff0000;border:1px solid #0000ff;background-color:#f0f0f0;"
 	

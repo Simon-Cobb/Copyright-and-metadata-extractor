@@ -48,11 +48,13 @@ if(ab1) {
 	 var abstract = '<div><p>Abstract:</p><div contentEditable="true" style="color:blue;width:800px;border: solid 1px #808080;" wrap="virtual">' + abs + '</div></div>';
 	} else if (ab2) {
 var abs = ab2.innerText;
-	 abs = abs.split('Abstract')[1].replace(/\n/g,'').trim();
+	// abs = abs.split('Abstract')[1].replace(/\n/g,'').trim();
+	 abs = abs.replace(/^(Abstract|Summary)/,'').replace(/Purpose\n/,' Purpose: ').replace(/Background\n/,' Background: ').replace(/Method\n/,' Method: ').replace(/Methods\n/,' Methods: ').replace(/Methods and Materials\n/,' Methods and Materials: ').replace(/Results\n/,' Results: ').replace(/Conclusions\n/,' Conclusions: ').replace(/Conclusion\n/,' Conclusion: ').replace(/Aims\n/,' Aims: ').replace(/\n/g,'').trim();
     var abstract = '<div><p>Abstract:</p><div contentEditable="true" style="color:blue;width:800px;border: solid 1px #808080;" wrap="virtual">' + abs + '</div></div>';
 	} else if (ab3) {
 var abs = ab3.innerText;
-	 abs = abs.replace(/^Abstract/,'').replace(/\n/g,'').trim();
+	// abs = abs.replace(/^Abstract/,'').replace(/\n/g,'').trim();
+	 abs = abs.replace(/^Abstract/,'').replace(/^Abstract/,'').replace(/Purpose\n/,' Purpose: ').replace(/Background\n/,' Background: ').replace(/Method\n/,' Method: ').replace(/Methods\n/,' Methods: ').replace(/Methods and Materials\n/,' Methods and Materials: ').replace(/Results\n/,' Results: ').replace(/Conclusions\n/,' Conclusions: ').replace(/Conclusion\n/,' Conclusion: ').replace(/Aims\n/,' Aims: ').replace(/\n/g,'').trim();
     var abstract = '<div><p>Abstract:</p><div contentEditable="true" style="color:blue;width:800px;border: solid 1px #808080;" wrap="virtual">' + abs + '</div></div>';
 	} else if (ab4) {
 	var abstract = ab4; 
@@ -63,11 +65,14 @@ var abs = ab3.innerText;
 
 var kw1 = document.querySelector("p#betterKWs");
 var kw2 = '';var keywords2 = document.getElementsByName('Keywords');for (i=0;i<keywords2.length;i++){kw2=kw2+'<div><p>Keywords:</p><div contentEditable="true" style="color:blue;width:800px;border: solid 1px #808080;" wrap="virtual">' +keywords2[i].content+'</div></div>';}
+var kw3 = '';var keywords3 = document.getElementsByName('citation_keywords');for (i=0;i<keywords3.length;i++){kw3=kw3+'<div><p>Keywords:</p><div contentEditable="true" style="color:blue;width:800px;border: solid 1px #808080;" wrap="virtual">' +keywords3[i].content+'</div></div>';}
 if(kw1) {
 kw1 = document.querySelector("p#betterKWs").innerText;
 var keywords = '<div><p>Keywords:</p><div contentEditable="true" style="color:blue;width:800px;border: solid 1px #808080;">' + kw1 + '</div></div>';
 	} else if (kw2) {
 	var keywords = kw2; 
+	} else if (kw3) {
+	var keywords = kw3; 
 	} else {	
   var keywords = '';
 }
@@ -82,6 +87,7 @@ else {z='<p>Authors:<table border=0 style=\'font:x-small verdana\'><tr><td><p>Su
 
 var doa1 = document.querySelector("div#banner.Banner");
 var doa2 = document.querySelector('section.publication-history');
+var doa3 = document.querySelector('body');
 if(doa1) { 
  doa1 = doa1.innerText;
  accpt = doa1.split('Accepted ')[1];
@@ -91,8 +97,15 @@ var acceptanceDate = '<div><p>Acceptance date:</p><div contentEditable="true" st
 } else if(doa2) { 
  doa2 = doa2.innerText;
  accpt = doa2.split('Manuscript accepted:')[1];
+ } else if(doa3) { 
+ doa3 = doa3.innerText;
+ accpt = doa3.split(/Accepted:/)[1];  //.split(/publi/i)[0];
+ if (accpt) { if (accpt.includes('P')) { accpt = accpt.split('P')[0] } else { accpt = accpt } } 
+ else { accpt = '' }
  } if (accpt) {
 var accpt = accpt.trim().split(/\n/)[0];
+//var acc = Date.parse(accpt);
+//accepted = acc.toISOString()
 var acceptanceDate = '<div><p>Acceptance date:</p><div contentEditable="true" style="color:blue;width:175px;border: solid 1px #808080;">' + accpt + '</div></div>';
 } else {
   var acceptanceDate = '';
@@ -126,7 +139,7 @@ var DOI = ''; }
 var jt1 = document.getElementsByName("citation_journal_title")[0];
 if(jt1) {
 var jt = jt1;
-  journal = text + '<div><p>Journal:</p><div contentEditable="true" style="color:blue;width:400px;border: solid 1px #808080;">' + jt.content + '</div></div>';
+var journal = text + '<div><p>Journal:</p><div contentEditable="true" style="color:blue;width:400px;border: solid 1px #808080;">' + jt.content + '</div></div>';
 }
 
 var issn1='';var x = document.getElementsByName('citation_issn');for (i=0;i<x.length;i++){issn1=issn1+'<div><ul><div contentEditable="true" style="color:blue;width:200px;border: solid 1px #808080;">'+x[i].content+'</div></ul></div>';}
